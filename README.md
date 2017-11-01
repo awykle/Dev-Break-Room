@@ -1,2 +1,2 @@
 # Dev-Break-Room
-A productivity app with short games for down time.
+A productivity app for programmers, with short games for down time.
