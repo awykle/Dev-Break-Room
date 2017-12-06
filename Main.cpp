@@ -153,50 +153,55 @@ void BlackJack()
 {
 	bool stay;
 	char choice = NULL;
+	char answer;
 
-	while (true) {
+	//Do/while loop to either stay in or exit program
+	do {
+		while (true) 
+		{
+			cout << "===================================================================";
+			stay = false;
 
-		cout << "===================================================================";
-		stay = false;
+			// Initialize srand and get random card numbers
+			srand(time(0));
+			int dealerCard = getCard();
+			int playerTotal = getCard() + getCard();
+			int dealerTotal = dealerCard + getCard();
 
-		// Initialize srand and get random card numbers
-		srand(time(0));
-		int dealerCard = getCard();
-		int playerTotal = getCard() + getCard();
-		int dealerTotal = dealerCard + getCard();
+			// Player's turn
+			while (!stay)
+			{
+				printData(playerTotal, dealerCard);
+				cout << "[H]it or [S]tay?\n";
+				cin >> choice;
+				turn(playerTotal, choice, stay);
+			}
+			stay = false;
+			cout << "\n\nIt is now the dealer's turn!\n";
 
-
-		// Player's turn
-		while (!stay) {
-
-			printData(playerTotal, dealerCard);
-			cout << "[H]it or [S]tay?\n";
-			cin >> choice;
-			turn(playerTotal, choice, stay);
-
-		}
-
-		stay = false;
-		cout << "\n\nIt is now the dealer's turn!\n";
-
-		// Dealer's turn
-		while (dealerTotal <= 21 && !stay) {
-
-			if (dealerTotal >= 17)
-				stay = true;
+			// Dealer's turn
+			while (dealerTotal <= 21 && !stay)
+			{
+				if (dealerTotal >= 17)
+					stay = true;
+				else
+					dealerTotal += getCard();
+			}
+			// Display winner
+			cout << "\n\nThe player has " << playerTotal << ".\nThe dealer has " << dealerTotal << ".\n\n";
+			if ((abs(21 - playerTotal)) < (abs(21 - dealerTotal)))
+				cout << "The player wins!\n\n";
 			else
-				dealerTotal += getCard();
-
+				cout << "The dealer wins!\n\n";
+			cout << "Would you like to play again? [Y]es or [N]o.\n";
+			cin >> answer;
+			if (answer == 'N' || answer == 'n')
+			{
+				cout << "Thank you for playing.\n";
+				return 0;
+			}
 		}
-
-		// Display winner
-		cout << "\n\nThe player has " << playerTotal << ".\nThe dealer has " << dealerTotal << ".\n\n";
-		if ((abs(21 - playerTotal)) < (abs(21 - dealerTotal)))  cout << "The player wins!\n";
-		else  cout << "The dealer wins!\n";
-
-	}
-
-
+	} while (answer == 'Y' || answer == 'y');
 }
 
 void printData(int playerTotal, int dealerCard) // Prints data for BlackJack function
