@@ -1,4 +1,6 @@
-﻿// Preprosessor directives
+﻿
+
+// Preprosessor directives
 #include "stdafx.h"
 #include <iostream> // Includes basic input/output
 #include <string> // Allows the use of the string data type
@@ -23,15 +25,16 @@ int getCard();
 void turn(int& playerTotal, char choice, bool& stay);
 int randNum(int, int);
 void answerCheck(string, string);
-int programChoice;
 
 int plyrChance = 5, plyrScore = 0, plyrDifficulty, quesNum, correctAnswers = 3;
+bool endBlackJack;
 
 // Main function
 int main()
 {
-	// Intorduction & menu
-	while (programChoice != 5) {
+	int programChoice;
+	// Introduction & menu
+	do { 
 		cout << "Welcome to the Developer Break Room!\n\n";
 		cout << "Please choose a program by entering a number. \n";
 		cout << "1. Duck Debugging\n";
@@ -65,7 +68,7 @@ int main()
 			break;
 
 		}
-	}
+	} while (programChoice != 5); //if user does not choose to exit, continue to loop the menu
 	return 0;
 }
 
@@ -236,7 +239,6 @@ void turn(int& playerTotal, char choice, bool& stay) {
 
 	// Since the only other option can be to stay, then stay
 	stay = true;
-
 }
 
 void Timer()
