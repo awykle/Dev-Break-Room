@@ -34,15 +34,13 @@ int main()
 {
 	int programChoice;
 	// Introduction & menu
-	do { 
+	do {
 		cout << "Welcome to the Developer Break Room!\n\n";
 		cout << "Please choose a program by entering a number. \n";
 		cout << "1. Duck Debugging\n";
 		cout << "2. Black Jack\n";
 		cout << "3. Timer\n";
 		cout << "4. Riddles\n";
-		cout << "5. Exit\n\n";
-
 		cin >> programChoice;
 
 		switch (programChoice) {
@@ -69,7 +67,7 @@ int main()
 
 		}
 	} while (programChoice != 5); //if user does not choose to exit, continue to loop the menu
-	return 0;
+
 }
 
 
@@ -274,7 +272,7 @@ void Timer()
 	cin >> m;
 	cout << "Enter time in seconds here (standard pomodoro = 0)" << endl
 		<< "Note: Timer will start after [Enter] is pressed.";
-		cin >> s;
+	cin >> s;
 
 
 	cout << "H:  " << h << " M:  " << m << " S:  " << s << endl;
@@ -698,12 +696,6 @@ void Riddles()
 
 }
 
-
-
-
-
-
-
 void answerCheck(string n, string m)// Checks for incorrect or correct answer. Displays score. (Riddles)
 {
 	if (n == m)
@@ -719,7 +711,8 @@ void answerCheck(string n, string m)// Checks for incorrect or correct answer. D
 		--plyrChance;
 		if (plyrChance <= 0)
 		{
-			cout << "\n\nLooks like your out of chances!\n You finished with a final score of: " << plyrScore << "!";
+			cout << "\n\nLooks like your out of chances!\n You finished with a final score of: " << plyrScore << "!\n";
+			main();
 		}
 		cout << "\nSorry that's incorrect. Time for a new question!\n";
 
